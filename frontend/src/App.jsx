@@ -1,15 +1,18 @@
-import React from "react";
-import Header from "./components/Header";
-import MessageContainer from "./components/MessageContainer";
-import InputArea from "./components/InputArea";
+import ChatRoom from "./components/ChatRoom";
+import LoginForm from "./components/LoginForm";
+import { ChatProvider, useChat } from "./context/ChatContext";
+
+const ChatApp = () => {
+  const { state } = useChat();
+
+  return state.isUsernameSet ? <ChatRoom /> : <LoginForm />;
+};
 
 const App = () => {
   return (
-    <div>
-      <Header />
-      <MessageContainer />
-      <InputArea />
-    </div>
+    <ChatProvider>
+      <ChatApp />
+    </ChatProvider>
   );
 };
 
